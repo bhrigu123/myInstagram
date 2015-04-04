@@ -5,7 +5,9 @@ from location.models import City
 
 # Create your models here.
 class MyUser(AbstractUser):
+    GENDER_CHOICES = (('M', 'Male'),('F', 'Female'),)
     profile_pic = models.ImageField(upload_to = 'profile_pics/', blank = True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_CHOICES[0][0])
     dob = models.DateField(blank=True, null=True)
     phone = PhoneNumberField(unique = True, null=True, blank=True)
     street_address = models.CharField(max_length = 100, null=True, blank=True)
