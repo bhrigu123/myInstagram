@@ -17,7 +17,7 @@ class UserCreationForm(forms.ModelForm):
         passwd2 = self.cleaned_data.get("passwd2")
         if passwd1 and passwd2 and passwd1 != passwd2:
             raise forms.ValidationError("Passwords don't match")
-        return password2
+        return passwd2
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit = False)
         user.set_password(self.cleaned_data["passwd1"])
