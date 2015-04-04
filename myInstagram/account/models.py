@@ -15,5 +15,8 @@ class MyUser(AbstractUser):
     pincode = models.CharField(max_length=8, default="0000000")
     following = models.ManyToManyField("self", symmetrical = False, related_name = "followers")
 
-
+    def image_tag(self):
+        return '<img height="40px" width="40px" src="/media/%s">' % self.profile_pic
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = 'True'
 
