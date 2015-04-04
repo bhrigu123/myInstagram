@@ -7,12 +7,18 @@ from .forms import *
 class MyUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'get_full_name', 'is_staff', 'gender', 'image_tag', 'phone')
     fieldsets = (
-            ('None', {'fields' : ('username', 'password', 'email')}),
-            ('Personal Info', {'fields' : ('first_name', 'last_name', 'gender', 'dob','phone', 'profile_pic')}),
+            ('None', {'fields' : (('username', 'email'), 'password')}),
+            ('Personal Info', {'fields' : (('first_name', 'last_name'), ('gender', 'dob'),'phone', 'profile_pic')}),
             ('Address', {'fields': (('street_address', 'city', 'pincode'),)}),
-            ('Permission', {'fields': (('is_staff', 'is_superuser', 'is_active'),'groups', 'user_permissions')}),
-            ('Important Dates', {'fields': ('last_login', 'date_joined')})
-            )
+            ('Permission', {
+                'fields': (('is_staff', 'is_superuser', 'is_active'),'groups', 'user_permissions'),
+                'classes': ('grp-collapse grp-closed',)
+                }),
+            ('Important Dates', {
+                'fields': ('last_login', 'date_joined'),
+                'classes': ('grp-collapse grp-closed',)
+                })
+    )
     add_fieldsets = (
             ('None', {
                 'classes' : ('wide',),
