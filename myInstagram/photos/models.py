@@ -16,10 +16,8 @@ class Photo(models.Model):
     likers = models.ManyToManyField(MyUser, related_name = 'photos_liked', null = True)
     user_tags = models.ManyToManyField(MyUser, related_name = 'photos_tagged_in', null = True)
     hash_tags = models.ManyToManyField(HashTag, null = True)
-    def __str__(self):
-        return self.image
 
-class Comments(models.Model):
+class Comment(models.Model):
     by = models.ForeignKey(MyUser)
     photo = models.ForeignKey(Photo)
     on = models.DateTimeField(auto_now_add = True)

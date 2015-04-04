@@ -22,4 +22,8 @@ class MyUser(AbstractUser):
             return ''
     image_tag.short_description = 'Image'
     image_tag.allow_tags = 'True'
+    
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("id__iexact", "username__icontains", "first_name__icontains", "last_name__icontains")
 
