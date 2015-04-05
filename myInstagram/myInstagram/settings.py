@@ -114,4 +114,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 GRAPPELLI_ADMIN_TITLE = 'myInstagram Admin'
 GRAPPELLI_AUTOCOMPLETE_LIMIT = 5
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
 

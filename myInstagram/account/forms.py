@@ -2,10 +2,11 @@ from django import forms
 from .models import *
 class UserCreationForm(forms.ModelForm):
     passwd1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    passwd2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    passwd2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput, help_text = "Should be same as Password")
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
         for field in self.fields:
             self.fields[field].required = True
 

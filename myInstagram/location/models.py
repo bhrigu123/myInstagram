@@ -27,6 +27,10 @@ class City(models.Model):
     name = models.CharField(max_length=70)
     def __str__(self):
         return self.state.country.name + " > " +  self.state.name + " > " + self.name
+    def get_state_name(self):
+        return self.state.name
+    def get_country_name(self):
+        return self.state.country.name
     
     class Meta:
         db_table = 'city'
