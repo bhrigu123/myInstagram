@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'account.views.mylogin', name='login'),
     url(r'^logout/$', 'account.views.mylogout', name='logout'),
     url(r'^home/$', 'account.views.home', name='home'),
-    url(r'^searchuser/$', 'account.views.autocomplete', name='userautocomplete')
+    url(r'^searchuser/$', 'account.views.autocomplete', name='userautocomplete'),
+    url(r'^mobilelogin/$', 'mobileauthentication.views.apilogin', name='mobilelogin'),
 
 ) + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

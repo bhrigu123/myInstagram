@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 AUTH_USER_MODEL = 'account.MyUser'
 
@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'location',
     'account',
-    'photos'
+    'photos',
+    'mobileauthentication',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'mobileauthentication.middleware.CustomTokenAuthMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )

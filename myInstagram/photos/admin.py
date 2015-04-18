@@ -4,11 +4,23 @@ from .models import *
 # Register your models here.
 
 class PhotoAdmin(admin.ModelAdmin):
-    raw_id_fields = ('likers', 'user_tags', 'hash_tags', 'by')
+    fieldsets = (
+            ('None', {'fields': ('image', 'description', 'user_tags', 'hash_tags')}),
+    )
+    raw_id_fields = ('user_tags', 'hash_tags')
     autocomplete_lookup_fields = {
-        'fk' : ['by'],
-        'm2m' : ['likers', 'user_tags']
+        'm2m' : ['user_tags', 'hash_tags']
     }
+    def save_model(self, request, obj, form, change):
+        obj.by = request.user
+        obj.save()
+    def get_queryset(self, request):
+        qs = super(PhotoAdmin, self).get_queryset(request)
+
+       # if request.user.is_superuser:
+        #    return qs
+        return qs.filter(by=request.user)
+
 
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(HashTag)
